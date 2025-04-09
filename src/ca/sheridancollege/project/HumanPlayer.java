@@ -14,5 +14,8 @@ public class HumanPlayer extends Player {
 
     @Override
     public void play() {
-        System.out.println(getName() + ", press Enter to draw a card.");
-        scanner.nextLine();
+        System.out.println(getName() + ", choose a card to draw (1 to " + getDeckSize() + "): ");
+        scanner.nextLine(); 
+        System.out.println("Drawing the card...");
+    }
+}
