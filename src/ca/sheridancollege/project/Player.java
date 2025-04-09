@@ -1,49 +1,63 @@
-/**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
- */
 package ca.sheridancollege.project;
 
-/**
- * A class that models each Player in the game. Players have an identifier, which should be unique.
- *
- * @author dancye
- * @author Paul Bonenfant Jan 2020
- */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public abstract class Player {
+    private String name;
+    private List<Card> deck;
+    private List<Card> wonPile;
 
-    private String name; //the unique name for this player
-
-    /**
-     * A constructor that allows you to set the player's unique ID
-     *
-     * @param name the unique ID to assign to this player.
-     */
-    public Player(String name) {
+    public Player(String name, List<Card> deck) {
         this.name = name;
+        this.deck = (deck != null) ? new ArrayList<>(deck) : new ArrayList<>();
+        this.wonPile = new ArrayList<>();
     }
 
-    /**
-     * @return the player name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Ensure that the playerID is unique
-     *
-     * @param name the player name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    public boolean hasCards() {
+        return !deck.isEmpty() || !wonPile.isEmpty();
     }
 
-    /**
-     * The method to be overridden when you subclass the Player class with your specific type of Player and filled in
-     * with logic to play your game.
-     */
-    public abstract void play();
+    public Card drawCard() {
+        if (deck.isEmpty() && !wonPile.isEmpty()) {
+            reshuffleWonPile();
+        }
+        return deck.isEmpty() ? null : deck.remove(0);
+    }
 
+    public void collectCards(List<WarCard> cards) {
+        if (cards != null && !cards.isEmpty()) {
+            wonPile.addAll(cards);
+        }
+    }
+
+    public void checkAndReshuffle() {
+        if (deck.isEmpty() && !wonPile.isEmpty()) {
+            reshuffleWonPile();
+        }
+    }
+
+    private void reshuffleWonPile() {
+        if (!wonPile.isEmpty()) {
+            System.out.println(name + " is reshuffling their won pile into the deck!");
+            Collections.shuffle(wonPile);
+            deck.addAll(wonPile);
+            wonPile.clear();
+        }
+    }
+
+    public int getTotalCardCount() {
+        return deck.size() + wonPile.size();
+    }
+
+    public int getDeckSize() {
+        return deck.size();
+    }
+
+    public abstract void play();
 }
