@@ -78,11 +78,6 @@ public class WarGame extends Game {
 
     }
 
-    public void incrementPlayer2RoundsWon() {
-        player2RoundsWon++;
-    }
-
-
 
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
