@@ -17,7 +17,7 @@ public class WarRound {
     }
 
     public void playRound() {
-        
+
 
         // Player 1 interaction
         if (player1 instanceof HumanPlayer) {
