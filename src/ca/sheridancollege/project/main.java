@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            while (true) {  // ✅ Loop to allow replay
+            while (true) {  
                 System.out.print("Enter Player 1 name: ");
                 String player1Name = scanner.nextLine();
                 
@@ -31,13 +31,13 @@ public class main {
                 WarGame game = new WarGame(player1, player2);
                 game.play();
                 
-                // ✅ Ask if the user wants to play again AFTER the game ends
+                
                 System.out.print("\nDo you want to play again? (yes/no): ");
                 String response = scanner.nextLine().trim().toLowerCase();
                 
                 if (!response.equals("yes")) {
                     System.out.println("Thank you for playing! Goodbye.");
-                    break;  // ✅ Exit loop if user says "no"
+                    break; 
                 }
             }
         }

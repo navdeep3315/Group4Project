@@ -18,12 +18,7 @@ public class WarRound {
 
     public void playRound() {
         
-
-        // Player 1 interaction
-        if (player1 instanceof HumanPlayer) {
-            System.out.println(player1.getName() + " - Press Enter to draw your card...");
-            scanner.nextLine();
-        }
+        //  Player 1 is a human player instatiated in Human Player Class
         player1.play();
         WarCard card1 = (WarCard) player1.drawCard();
         System.out.println(player1.getName() + " plays: " + card1);
