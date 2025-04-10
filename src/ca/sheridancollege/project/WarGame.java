@@ -8,7 +8,8 @@ public class WarGame extends Game {
 
     private int player1RoundsWon = 0;
     private int player2RoundsWon = 0;
-    private int totalRoundsPlayed = 0;
+   
+
 
     public WarGame(Player player1, Player player2) {
         super("War Card Game");
@@ -51,7 +52,9 @@ public class WarGame extends Game {
         System.out.println();
         System.out.println(player1.getName() + " won " + player1RoundsWon + " rounds.");
         System.out.println(player2.getName() + " won " + player2RoundsWon + " rounds.");
-        System.out.println("Total Rounds Played: " + totalRoundsPlayed);
+
+        System.out.println("Total Rounds PLayed : " + (player1RoundsWon + player2RoundsWon));
+
         System.out.println("========================\n");
     }
 
@@ -59,21 +62,27 @@ public class WarGame extends Game {
         System.out.println("\n=== Current Score ===");
         System.out.println(player1.getName() + ": " + player1.getTotalCardCount() + " cards | Rounds Won: " + player1RoundsWon);
         System.out.println(player2.getName() + ": " + player2.getTotalCardCount() + " cards | Rounds Won: " + player2RoundsWon);
-        System.out.println("Total Rounds Played: " + totalRoundsPlayed);
+
+        System.out.println("Total Rounds PLayed : " +( player1RoundsWon + player2RoundsWon));
+
         System.out.println("=======================\n");
     }
 
     public void incrementPlayer1RoundsWon() {
         player1RoundsWon++;
+
+    }
+
+    public void incrementPlayer2RoundsWon() {
+        player2RoundsWon++;
+
     }
 
     public void incrementPlayer2RoundsWon() {
         player2RoundsWon++;
     }
 
-    public void incrementRoundsPlayed() {
-        totalRoundsPlayed++;
-    }
+
 
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
