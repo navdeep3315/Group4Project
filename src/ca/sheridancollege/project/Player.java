@@ -55,9 +55,7 @@ public abstract class Player {
         return deck.size() + wonPile.size();
     }
 
-    public int getDeckSize() {
-        return deck.size();
-    }
+
 
     public abstract void play();
 }
