@@ -13,7 +13,7 @@ public class WarRound {
         this.player2 = player2;
         this.game = game;
     }
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     public void playRound() {
         player1.play();
         WarCard card1 = (WarCard) player1.drawCard();
