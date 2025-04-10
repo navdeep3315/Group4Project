@@ -1,29 +1,14 @@
-
 package ca.sheridancollege.project;
-
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ca.sheridancollege.project;
-
-/**
- *
- * @author navde
- */
-
 
 public class WarGame extends Game {
     private Player player1;
     private Player player2;
     private WarRound warRound;
-    private boolean gameOver = false; 
+    private boolean gameOver = false;
 
     private int player1RoundsWon = 0;
     private int player2RoundsWon = 0;
-    
-
+    private int totalRoundsPlayed = 0;
 
     public WarGame(Player player1, Player player2) {
         super("War Card Game");
@@ -39,83 +24,58 @@ public class WarGame extends Game {
         while (player1.hasCards() && player2.hasCards()) {
             warRound.playRound();
             showScore();
-            if (gameOver) break; 
+            if (gameOver) break;
         }
 
-        declareWinner(); 
+        declareWinner();
     }
 
-@Override
-public void declareWinner() {
-    int player1Cards = player1.getTotalCardCount();
-    int player2Cards = player2.getTotalCardCount();
+    @Override
+    public void declareWinner() {
+        int player1Cards = player1.getTotalCardCount();
+        int player2Cards = player2.getTotalCardCount();
 
-    System.out.println("\n===== Final Result =====");
+        System.out.println("\n===== Final Result =====");
 
-    if (player1Cards > player2Cards) {
+        if (player1Cards > player2Cards) {
+            System.out.println(player1.getName() + " wins the game!");
+        } else if (player2Cards > player1Cards) {
+            System.out.println(player2.getName() + " wins the game!");
+        } else {
+            System.out.println("It's a tie!");
+        }
 
-        System.out.println(player1.getName() + " wins the game!");
-    } else if (player2Cards > player1Cards) {
-        System.out.println(player2.getName() + " wins the game!");
-    } else {
-        System.out.println("It's a tie!");
+        System.out.println(player1.getName() + "'s final score: " + player1Cards + " cards");
+        System.out.println(player2.getName() + "'s final score: " + player2Cards + " cards");
+
+        System.out.println();
+        System.out.println(player1.getName() + " won " + player1RoundsWon + " rounds.");
+        System.out.println(player2.getName() + " won " + player2RoundsWon + " rounds.");
+        System.out.println("Total Rounds Played: " + totalRoundsPlayed);
+        System.out.println("========================\n");
     }
-
-    System.out.println(player1.getName() + "'s final score: " + player1Cards + " cards");
-    System.out.println(player2.getName() + "'s final score: " + player2Cards + " cards");
-
-    System.out.println();
-    System.out.println(player1.getName() + " won " + player1RoundsWon + " rounds.");
-    System.out.println(player2.getName() + " won " + player2RoundsWon + " rounds.");
-    System.out.println("========================\n");
-}
-public void incrementPlayer1RoundsWon() {
-    player1RoundsWon++;
-}
-
-public void incrementPlayer2RoundsWon() {
-    player2RoundsWon++;
-}
-
-
-
 
     public void showScore() {
-    System.out.println("\n=== Current Score ===");
-    System.out.println(player1.getName() + ": " + player1.getTotalCardCount() + " cards | Rounds Won: " + player1RoundsWon);
-    System.out.println(player2.getName() + ": " + player2.getTotalCardCount() + " cards | Rounds Won: " + player2RoundsWon);
-    System.out.println("Total Round: "+(player1RoundsWon+player2RoundsWon));
-
-    System.out.println("=======================");
-}
-
-    
-
-        System.out.println(player1.getName() + " wins the game! ");
-        System.out.println(player1.getName() + "'s final score: " + player1Cards + " cards");
-        System.out.println(player2.getName() + "'s final score: " + player2Cards + " cards");
-    } else if (player2Cards > player1Cards) {
-        System.out.println(player2.getName() + " wins the game! ");
-        System.out.println(player2.getName() + "'s final score: " + player2Cards + " cards");
-        System.out.println(player1.getName() + "'s final score: " + player1Cards + " cards");
-    } else {
-        System.out.println("It's a tie!");
-        System.out.println(player1.getName() + " and " + player2.getName() + " both have " + player1Cards + " cards");
-    }
-
-    System.out.println("========================\n");
-}
-
-    private void showScore() {
         System.out.println("\n=== Current Score ===");
-        System.out.println(player1.getName() + ": " + player1.getTotalCardCount() + " cards");
-        System.out.println(player2.getName() + ": " + player2.getTotalCardCount() + " cards");
-        System.out.println("======================\n");
+        System.out.println(player1.getName() + ": " + player1.getTotalCardCount() + " cards | Rounds Won: " + player1RoundsWon);
+        System.out.println(player2.getName() + ": " + player2.getTotalCardCount() + " cards | Rounds Won: " + player2RoundsWon);
+        System.out.println("Total Rounds Played: " + totalRoundsPlayed);
+        System.out.println("=======================\n");
     }
 
+    public void incrementPlayer1RoundsWon() {
+        player1RoundsWon++;
+    }
 
-    public void setGameOver(boolean gameOver) { 
+    public void incrementPlayer2RoundsWon() {
+        player2RoundsWon++;
+    }
+
+    public void incrementRoundsPlayed() {
+        totalRoundsPlayed++;
+    }
+
+    public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
 }
-
