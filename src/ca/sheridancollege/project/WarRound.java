@@ -16,17 +16,19 @@ public class WarRound {
 
     public void playRound() {
         player1.play();
+        WarCard card1 = (WarCard) player1.drawCard();
+        System.out.println("\n" + player1.getName() + " plays: " + card1);
+        
+        
         player2.play();
 
-        WarCard card1 = (WarCard) player1.drawCard();
-        WarCard card2 = (WarCard) player2.drawCard();
 
+        WarCard card2 = (WarCard) player2.drawCard();
+        System.out.println(player2.getName() + " plays: " + card2);
         if (card1 == null || card2 == null) {
             return;
         }
 
-        System.out.println("\n" + player1.getName() + " plays: " + card1);
-        System.out.println(player2.getName() + " plays: " + card2);
 
         List<WarCard> warPile = new ArrayList<>();
         warPile.add(card1);

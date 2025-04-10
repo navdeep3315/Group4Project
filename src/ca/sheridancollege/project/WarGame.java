@@ -58,11 +58,6 @@ public void declareWinner() {
     System.out.println("========================\n");
 }
 
-
-
-
-
-
     private void showScore() {
         System.out.println("\n=== Current Score ===");
         System.out.println(player1.getName() + ": " + player1.getTotalCardCount() + " cards");
