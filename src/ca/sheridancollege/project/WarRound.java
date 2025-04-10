@@ -15,38 +15,41 @@ public class WarRound {
     }
 
     public void playRound() {
-        player1.play();
-        player2.play();
+    player1.play();
 
-        WarCard card1 = (WarCard) player1.drawCard();
-        WarCard card2 = (WarCard) player2.drawCard();
+    WarCard card1 = (WarCard) player1.drawCard();
+    System.out.println("\n" + player1.getName() + " plays: " + card1);
 
-        if (card1 == null || card2 == null) {
-            return;
-        }
+    player2.play();
 
-        System.out.println("\n" + player1.getName() + " plays: " + card1);
-        System.out.println(player2.getName() + " plays: " + card2);
+    WarCard card2 = (WarCard) player2.drawCard();
+    System.out.println(player2.getName() + " plays: " + card2);
 
-        List<WarCard> warPile = new ArrayList<>();
-        warPile.add(card1);
-        warPile.add(card2);
-
-        if (card1.getRank() > card2.getRank()) {
-            System.out.println(player1.getName() + " wins this round and takes all cards!\n");
-            player1.collectCards(warPile);
-        } else if (card2.getRank() > card1.getRank()) {
-            System.out.println(player2.getName() + " wins this round and takes all cards!\n");
-            player2.collectCards(warPile);
-        } else {
-            System.out.println(" WAR! Players place three face-down cards...\n");
-            handleWar(warPile);
-        }
-
-        player1.checkAndReshuffle();
-        player2.checkAndReshuffle();
-        checkForElimination();
+    if (card1 == null || card2 == null) {
+        return;
     }
+
+    List<WarCard> warPile = new ArrayList<>();
+    warPile.add(card1);
+    warPile.add(card2);
+
+    if (card1.getRank() > card2.getRank()) {
+        System.out.println(player1.getName() + " wins this round and takes all cards!\n");
+        player1.collectCards(warPile);
+        game.incrementPlayer1RoundsWon(); 
+    } else if (card2.getRank() > card1.getRank()) {
+        System.out.println(player2.getName() + " wins this round and takes all cards!\n");
+        player2.collectCards(warPile);
+        game.incrementPlayer2RoundsWon(); 
+    } else {
+        System.out.println(" WAR! Players place three face-down cards...\n");
+        handleWar(warPile);
+    }
+
+    player1.checkAndReshuffle();
+    player2.checkAndReshuffle();
+    checkForElimination();
+}
 
     private void handleWar(List<WarCard> warPile) {
         for (int i = 0; i < 3; i++) {
