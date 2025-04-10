@@ -17,7 +17,7 @@ public class WarRound {
     }
 
     public void playRound() {
-        game.incrementRoundsPlayed(); // ✅ Count each round
+        
 
         // Player 1 interaction
         if (player1 instanceof HumanPlayer) {
