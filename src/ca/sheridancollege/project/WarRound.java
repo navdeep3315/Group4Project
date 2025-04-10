@@ -25,10 +25,6 @@ public class WarRound {
         System.out.println(player1.getName() + " plays: " + card1);
 
         // Player 2 interaction
-        if (player2 instanceof HumanPlayer) {
-            System.out.println(player2.getName() + " - Press Enter to draw your card...");
-            scanner.nextLine();
-        }
         player2.play();
         WarCard card2 = (WarCard) player2.drawCard();
         System.out.println(player2.getName() + " plays: " + card2);
